@@ -28,6 +28,7 @@ function blog() {
   const textColor = { light: "gray.500", dark: "gray.100" };
   const badgeColor = { light: "whatsapp", dark: "teal" };
   const router = useRouter();
+  // TODO: make get all posts function and display it
 
   function generatePost(data: Post) {
     return (

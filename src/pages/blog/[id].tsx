@@ -1,40 +1,28 @@
+import { NextPageContext } from "next";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "../../components/Navbar";
-import firebase from "../../firebase/firebase";
+import { getPost } from "../../utils/db";
 
-function Post() {
-  const router = useRouter();
-  const { id } = router.query;
-  const db = firebase.firestore();
-  const [data, setData] = useState<
-    | firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>
-    | undefined
-  >();
-  const [loading, setLoading] = useState(true);
-
-  const fetchPost = async () => {
-    const res = db.collection("articles").doc(id);
-    const dataobj = await res.get().then((datas) => {
-      setData(datas);
-      setLoading(false);
-    });
-  };
-  // TODO: change db to mongo
-  useEffect(() => {
-    fetchPost().catch((err) => {
-      console.log(err);
-    });
-  }, []);
-
-  if (loading) return <h1>LOADING...</h1>;
-  const aD = data.data();
+function Post(props) {
+  const post = JSON.parse(props.post);
 
   return (
     <>
       <Navbar />
+      <h1>{post.title}</h1>
     </>
   );
+}
+
+export async function getServerSideProps(context: NextPageContext) {
+  const id = context.query.id;
+  const postData = await getPost(id);
+  return {
+    props: {
+      post: postData,
+    },
+  };
 }
 
 export default Post;
