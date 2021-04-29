@@ -1,4 +1,5 @@
 import { NextPageContext } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import Navbar from "../../components/Navbar";
@@ -9,8 +10,13 @@ function Post(props) {
 
   return (
     <>
+      <Head>
+        <title>{post.title} - Untitled</title>
+      </Head>
       <Navbar />
-      <h1>{post.title}</h1>
+      <h1>title - {post.title}</h1>
+      <h2>author - {post.author}</h2>
+      <p>content - {post.content}</p>
     </>
   );
 }

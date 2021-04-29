@@ -6,9 +6,11 @@ import {
   Badge,
   Box,
   Center,
+  Divider,
   Flex,
   Grid,
   GridItem,
+  Heading,
   HStack,
   SimpleGrid,
   Spacer,
@@ -18,21 +20,22 @@ import {
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
-import { Post } from "../../types/post";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { NextPageContext } from "next";
+import { getAllPosts, getPost } from "../../utils/db";
 
-function blog() {
+function blog(props) {
   const { colorMode } = useColorMode();
   const bgColor = { light: "gray.200", dark: "gray.700" };
   const textColor = { light: "gray.500", dark: "gray.100" };
-  const badgeColor = { light: "whatsapp", dark: "teal" };
+  const badgeColor = { light: "purple", dark: "teal" };
+  const variant = { light: "outline", dark: null };
   const router = useRouter();
-  // TODO: make get all posts function and display it
+  const post = JSON.parse(props.post);
 
-  function generatePost(data: Post) {
+  function generatePost(data) {
     return (
-      // create post
       <Box
         width="300px"
         height="380px"
@@ -41,19 +44,25 @@ function blog() {
         overflow="hidden"
         boxShadow="sm"
         bg={bgColor[colorMode]}
+        key={data.id}
       >
-        <Image w="7xl" src={data.thumbnail} alt="Image is not avaliable" />
+        <Image
+          h="44"
+          w="3xl"
+          src={data.thumbnail}
+          alt="Image is not avaliable"
+        />
         <Box p={5}>
-          <Stack isInline align="baseline">
+          <Stack direction="row" align="baseline">
             {data.category.map((val) => (
-              <Badge rounded="full" colorScheme="whatsapp">
+              <Badge
+                rounded="full"
+                variant={variant[colorMode]}
+                colorScheme={badgeColor[colorMode]}
+              >
                 {val.toUpperCase()}
               </Badge>
             ))}
-            <Text textTransform="uppercase" fontSize="sm" color="gray.500">
-              {data.create_at.getMonth() + 1}/{data.create_at.getDate()}/
-              {data.create_at.getFullYear()}
-            </Text>
           </Stack>
           <Text as="h2" fontWeight="semibold" fontSize="xl" my={2}>
             {data.title}
@@ -84,34 +93,37 @@ function blog() {
         <title>Blog - Untitled</title>
       </Head>
       <Flex>
-        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1.3 }}>
-          <Button m={5} colorScheme="teal" variant="outline">
-            Write Post
-          </Button>
-        </motion.div>
-
         <Spacer />
         <Navbar />
       </Flex>
 
       <SimpleGrid minChildWidth="120px" spacing="40px">
-        {/* get posts from firebase and call function */}
-        {/* TODO: get data from firebase and display data */}
-        {generatePost({
-          author: "keki",
-          title: "This is kinda weird",
-          thumbnail:
-            "https://cdn.discordapp.com/attachments/505047047255359498/834697410445443072/elonmusk.gif",
-          category: ["Development", "news"],
-          updated_at: new Date(),
-          create_at: new Date(),
-          content:
-            "adfasidufaejfdsfaisfbaefasdfasdfasddsafasdfasdfasdfasdfdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf",
-          id: "yU7TsNCB9SN5V1Eulogj",
-        })}
+        {post.length > 0 && (
+          <SimpleGrid minChildWidth="400px">
+            {post.map((singePost) => (
+              <Box key={singePost.id} textAlign="start" m={2}>
+                {generatePost(singePost)}
+              </Box>
+            ))}
+          </SimpleGrid>
+        )}
       </SimpleGrid>
     </>
   );
+}
+
+export async function getServerSideProps(context: NextPageContext) {
+  const post = await getAllPosts();
+  const data = post.map((singlePost: any) => {
+    return {
+      ...singlePost,
+    };
+  });
+  return {
+    props: {
+      post: JSON.stringify(data),
+    },
+  };
 }
 
 export default blog;

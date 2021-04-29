@@ -19,3 +19,9 @@ export const getPost = async (id) => {
   const data = snapshot.exists ? JSON.stringify(snapshot.data()) : null;
   return data;
 };
+
+export const getAllPosts = async () => {
+  const snapshot = await firebase.firestore().collection("articles").get();
+  const post = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  return post;
+};
