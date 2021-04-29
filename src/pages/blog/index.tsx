@@ -13,6 +13,7 @@ import {
   Heading,
   HStack,
   SimpleGrid,
+  Container,
   Spacer,
   Stack,
   Text,
@@ -40,8 +41,9 @@ function blog(props) {
         width="300px"
         height="380px"
         rounded="20px"
+        m={3}
         overflow="hidden"
-        boxShadow="sm"
+        boxShadow="xl"
         bg={bgColor[colorMode]}
         key={data.id}
       >
@@ -95,16 +97,17 @@ function blog(props) {
         <Spacer />
         <Navbar />
       </Flex>
-
-      {post.length > 0 && (
-        <Grid templateColumns="repeat(5, 1fr)" gap={6}>
-          {post.map((singePost) => (
-            <Box key={singePost.id} textAlign="start" m={2}>
-              {PostGen(singePost)}
-            </Box>
-          ))}
-        </Grid>
-      )}
+      <Container maxW="6xl">
+        {post.length > 0 && (
+          <Grid templateColumns="repeat(5, 1fr)" gap={6}>
+            {post.map((singePost) => (
+              <Box key={singePost.id} textAlign="start" m={2}>
+                {PostGen(singePost)}
+              </Box>
+            ))}
+          </Grid>
+        )}
+      </Container>
     </>
   );
 }
