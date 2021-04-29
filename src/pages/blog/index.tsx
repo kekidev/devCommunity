@@ -34,12 +34,11 @@ function blog(props) {
   const router = useRouter();
   const post = JSON.parse(props.post);
 
-  function generatePost(data) {
+  function PostGen(data) {
     return (
       <Box
         width="300px"
         height="380px"
-        maxHeight="400px"
         rounded="20px"
         overflow="hidden"
         boxShadow="sm"
@@ -97,17 +96,15 @@ function blog(props) {
         <Navbar />
       </Flex>
 
-      <SimpleGrid minChildWidth="120px" spacing="40px">
-        {post.length > 0 && (
-          <SimpleGrid minChildWidth="400px">
-            {post.map((singePost) => (
-              <Box key={singePost.id} textAlign="start" m={2}>
-                {generatePost(singePost)}
-              </Box>
-            ))}
-          </SimpleGrid>
-        )}
-      </SimpleGrid>
+      {post.length > 0 && (
+        <Grid templateColumns="repeat(5, 1fr)" gap={6}>
+          {post.map((singePost) => (
+            <Box key={singePost.id} textAlign="start" m={2}>
+              {PostGen(singePost)}
+            </Box>
+          ))}
+        </Grid>
+      )}
     </>
   );
 }
