@@ -99,7 +99,7 @@ function blog(props) {
       </Flex>
       <Container maxW="6xl">
         {post.length > 0 && (
-          <Grid templateColumns="repeat(5, 1fr)" gap={6}>
+          <Grid templateColumns="repeat(3, 1fr)" gap={6}>
             {post.map((singePost) => (
               <Box key={singePost.id} textAlign="start" m={2}>
                 {PostGen(singePost)}
