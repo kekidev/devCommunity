@@ -30,9 +30,7 @@ function Post(props) {
         <Spacer />
         <Navbar />
       </Flex>
-      <h1>title - {post.title}</h1>
-      <h2>author - {post.author}</h2>
-      <p>content - {post.content}</p>
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </>
   );
 }

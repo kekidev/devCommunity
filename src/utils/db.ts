@@ -20,6 +20,15 @@ export const getPost = async (id) => {
   return data;
 };
 
+export const addPost = async (postData, id) => {
+  let res = await firebase
+    .firestore()
+    .collection("articles")
+    .doc(id)
+    .set(postData);
+  return res;
+};
+
 export const getAllPosts = async () => {
   const snapshot = await firebase.firestore().collection("articles").get();
   const post = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));

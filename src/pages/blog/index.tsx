@@ -57,6 +57,7 @@ function blog(props) {
           <Stack direction="row" align="baseline">
             {data.category.map((val) => (
               <Badge
+                key="1"
                 rounded="full"
                 variant={variant[colorMode]}
                 colorScheme={badgeColor[colorMode]}

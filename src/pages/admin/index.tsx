@@ -28,7 +28,13 @@ function index() {
         <title>Admin Panel - Untitled</title>
       </Head>
       <Navbar />
-      <Button>Write Post</Button>
+      <Button
+        onClick={() => {
+          router.push("/admin/write");
+        }}
+      >
+        Write Post
+      </Button>
     </>
   );
 }
