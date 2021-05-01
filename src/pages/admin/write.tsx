@@ -8,26 +8,46 @@ import { Center } from "@chakra-ui/layout";
 import { addPost } from "../../utils/db";
 import { v4 as uuidv4 } from "uuid";
 import { Input } from "@chakra-ui/input";
+import { useToast } from "@chakra-ui/react";
 
 function write() {
   const { auth } = useAuth();
   const router = useRouter();
   const editorRef = useRef(null);
-  const log = () => {
+  const inputRef = useRef(null);
+  const thumbRef = useRef(null);
+  const categoryRef = useRef(null);
+  const descRef = useRef(null);
+
+  const toast = useToast();
+
+  const post = () => {
     if (editorRef.current) {
+      const title = inputRef.current.value;
+      const thumbnail = thumbRef.current.value;
+      const category = categoryRef.current.value.split(" ");
+      const description = descRef.current.value;
+
       const data = {
         author: auth?.name,
         author_email: auth?.email,
-        category: ["test"],
+        category: category,
         content: editorRef.current.getContent(),
-        thumbnail:
-          "https://lh3.googleusercontent.com/-_xS0wFLr6Z0/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckmu8e2IBu25nXp0n5gz4CdpuY5bg/s96-c/photo.jpg",
-        title: "test",
+        thumbnail: thumbnail,
+        title: title,
+        description: description,
       };
-      // console.log(editorRef.current.getContent());
-      console.log(data);
+
       const e = uuidv4();
-      // addPost(data, e);
+      addPost(data, e);
+      router.push(`/blog/${e}`);
+      toast({
+        title: "Success!",
+        description: "Successfully posted article",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
     }
   };
 
@@ -43,8 +63,10 @@ function write() {
   return (
     <>
       <Navbar />
-      <Input placeholder="title" />
-      <Input placeholder="thumbnail url" />
+      <Input ref={inputRef} placeholder="title" />
+      <Input ref={thumbRef} placeholder="thumbnail url" />
+      <Input ref={categoryRef} placeholder="category" />
+      <Input ref={descRef} placeholder="description" />
       <Editor
         onInit={(evt, editor) => (editorRef.current = editor)}
         apiKey="n4tb6hnentwt4atzyj286iftoj5qr2d1op2jjx7drm1l7kn1"
@@ -67,7 +89,7 @@ function write() {
         }}
       />
       <Center h="100px">
-        <Button colorScheme="teal" variant="outline" onClick={log}>
+        <Button colorScheme="teal" variant="outline" onClick={post}>
           Submit
         </Button>
       </Center>

@@ -1,4 +1,4 @@
-import { Flex, Spacer } from "@chakra-ui/layout";
+import { Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
 import { NextPageContext } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -30,7 +30,9 @@ function Post(props) {
         <Spacer />
         <Navbar />
       </Flex>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      <Text fontSize="2xl">
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      </Text>
     </>
   );
 }

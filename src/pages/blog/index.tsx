@@ -18,6 +18,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/layout";
+import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import Navbar from "../../components/Navbar";
@@ -34,6 +35,7 @@ function blog(props) {
   const variant = { light: "outline", dark: null };
   const router = useRouter();
   const post = JSON.parse(props.post);
+  const e = uuidv4();
 
   function PostGen(data) {
     return (
@@ -70,7 +72,7 @@ function blog(props) {
             {data.title}
           </Text>
           <Text isTruncated fontWeight="light" fontSize="md" color="gray.500">
-            {data.content}
+            {data.description}
           </Text>
           <Text
             fontWeight="semibold"
