@@ -31,7 +31,7 @@ function blog(props) {
   const { colorMode } = useColorMode();
   const bgColor = { light: "gray.200", dark: "gray.700" };
   const textColor = { light: "gray.500", dark: "gray.100" };
-  const badgeColor = { light: "purple", dark: "teal" };
+  const badgeColor = { light: "gray", dark: "teal" };
   const variant = { light: "outline", dark: null };
   const router = useRouter();
   const post = JSON.parse(props.post);

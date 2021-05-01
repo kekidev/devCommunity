@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/button";
+import { Center, Flex, Heading, SimpleGrid, Spacer } from "@chakra-ui/layout";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -27,14 +28,20 @@ function index() {
       <Head>
         <title>Admin Panel - Untitled</title>
       </Head>
-      <Navbar />
-      <Button
-        onClick={() => {
-          router.push("/admin/write");
-        }}
-      >
-        Write Post
-      </Button>
+      <Flex>
+        <Heading m={4}>Admin Panel</Heading>
+        <Spacer />
+        <Navbar />
+      </Flex>
+      <SimpleGrid column={5} spacing={10}>
+        <Button
+          onClick={() => {
+            router.push("/admin/write");
+          }}
+        >
+          Write Post
+        </Button>
+      </SimpleGrid>
     </>
   );
 }
