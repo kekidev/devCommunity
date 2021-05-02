@@ -7,9 +7,9 @@ const ColorMode = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Tooltip label={colorMode === "light" ? "Dark Mode" : "Light Mode"}>
+    <Tooltip label={colorMode === "light" ? "다크모드" : "라이트 모드"}>
       <IconButton
-        aria-label="Toggle Dark Switch"
+        aria-label="컬러 바꾸기"
         icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
         onClick={toggleColorMode}
         width="72"

@@ -9,9 +9,6 @@ export default function Navbar() {
   return (
     <>
       <Flex>
-        {/* <Heading ml={4} mt={4} onClick={() => router.push("/")} as="button">
-          RBLXGAL
-        </Heading> */}
         <Spacer />
         <Sidebar />
       </Flex>

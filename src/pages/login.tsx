@@ -33,7 +33,7 @@ const signin = () => {
         <Center mt={10}>
           <VStack spacing="4">
             <Heading fontSize="3xl" mb={2}>
-              Sign in with other services
+              다른 플랫폼으로 로그인해보세요
             </Heading>
             <Button
               width="72"
@@ -41,8 +41,8 @@ const signin = () => {
               onClick={() =>
                 siginWithGoogle().then(() =>
                   toast({
-                    title: "Success!",
-                    description: "Successfully Signed in",
+                    title: "성공",
+                    description: "성공적으로 로그인하였습니다",
                     status: "success",
                     duration: 2000,
                     isClosable: true,
@@ -50,7 +50,7 @@ const signin = () => {
                 )
               }
             >
-              Sign in with google
+              구글로 로그인
             </Button>
           </VStack>
         </Center>

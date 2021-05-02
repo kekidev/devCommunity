@@ -1,18 +1,11 @@
 import { Button } from "@chakra-ui/button";
 import { useColorMode } from "@chakra-ui/color-mode";
-import { StarIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/image";
 import {
   Badge,
   Box,
-  Center,
-  Divider,
   Flex,
   Grid,
-  GridItem,
-  Heading,
-  HStack,
-  SimpleGrid,
   Container,
   Spacer,
   Stack,
@@ -25,7 +18,7 @@ import Navbar from "../../components/Navbar";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { NextPageContext } from "next";
-import { getAllPosts, getPost } from "../../utils/db";
+import { getAllPosts } from "../../utils/db";
 
 function blog(props) {
   const { colorMode } = useColorMode();
@@ -83,7 +76,7 @@ function blog(props) {
           </Text>
           <Box textAlign="center" mt={4}>
             <Button onClick={() => router.push(`/blog/${data.id}`)}>
-              See more
+              자세히 보기
             </Button>
           </Box>
         </Box>

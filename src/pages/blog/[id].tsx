@@ -25,7 +25,7 @@ function Post(props) {
           m={6}
           onClick={() => router.push("/blog")}
         >
-          Go back
+          뒤로 돌아가기
         </Button>
         <Spacer />
         <Navbar />

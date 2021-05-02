@@ -29,7 +29,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <Tooltip label="Open menu">
+      <Tooltip label="메뉴 열기">
         <HamburgerIcon ref={btnRef} onClick={onOpen} w={10} m={6} h={10} />
       </Tooltip>
       <Drawer
@@ -83,11 +83,11 @@ export default function Sidebar() {
                 <Divider orientation="horizontal" />
                 {auth ? (
                   <Button width="72" onClick={() => signOut()}>
-                    Logout
+                    로그아웃
                   </Button>
                 ) : (
                   <Button width="72" onClick={() => router.push("/login")}>
-                    Login
+                    로그인
                   </Button>
                 )}
               </VStack>
@@ -95,7 +95,7 @@ export default function Sidebar() {
 
             <DrawerFooter>
               <Button variant="ghost" mr={3} onClick={onClose}>
-                Close
+                닫기
               </Button>
             </DrawerFooter>
           </DrawerContent>
