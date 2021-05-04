@@ -29,7 +29,6 @@ function blog(props) {
   const router = useRouter();
   const post = JSON.parse(props.post);
   const e = uuidv4();
-
   function PostGen(data) {
     return (
       <Box

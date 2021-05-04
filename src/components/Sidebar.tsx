@@ -4,7 +4,7 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { Avatar, Divider } from "@chakra-ui/react";
 import { Center, Flex, Heading, VStack } from "@chakra-ui/layout";
 
-import { FaInfo, FaPen, FaLayerGroup } from "react-icons/fa";
+import {FaInfo, FaPen, FaLayerGroup, FaRProject, FaStar} from "react-icons/fa";
 
 import {
   Drawer,
@@ -80,6 +80,11 @@ export default function Sidebar() {
                 >
                   Blog
                 </Button>
+                <Button
+                  leftIcon={<FaStar />}
+                  width="72"
+                  onClick={() => router.push("/projects")}
+                >Projects</Button>
                 <Divider orientation="horizontal" />
                 {auth ? (
                   <Button width="72" onClick={() => signOut()}>
