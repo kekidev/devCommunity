@@ -1,11 +1,10 @@
-import { Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
+import { Flex, Spacer, Text } from "@chakra-ui/layout";
 import { NextPageContext } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import Navbar from "../../components/Navbar";
 import { getPost } from "../../utils/db";
-import { FaInfo, FaPen, FaLayerGroup } from "react-icons/fa";
 import { Button } from "@chakra-ui/button";
 import { ArrowLeftIcon } from "@chakra-ui/icons";
 
