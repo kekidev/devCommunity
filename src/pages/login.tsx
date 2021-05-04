@@ -35,9 +35,13 @@ const signin = () => {
             <Heading fontSize="3xl" mb={2}>
               다른 플랫폼으로 로그인해보세요
             </Heading>
+            <Heading fontSize="xl" m={2}>
+              현재 이유 모를 버그로 로그인되지 않음 고치는중..
+            </Heading>
             <Button
               width="72"
               leftIcon={<FcGoogle />}
+              disabled={true}
               onClick={() =>
                 siginWithGoogle().then(() =>
                   toast({

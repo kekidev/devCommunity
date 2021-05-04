@@ -20,6 +20,8 @@ import { useRouter } from "next/router";
 import { NextPageContext } from "next";
 import { getAllPosts } from "../../utils/db";
 
+
+
 function blog(props) {
   const { colorMode } = useColorMode();
   const bgColor = { light: "gray.200", dark: "gray.700" };
