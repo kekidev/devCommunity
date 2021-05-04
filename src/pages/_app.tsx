@@ -3,7 +3,8 @@ import { AppProps } from "next/app";
 import { AuthProvider } from "../lib/auth";
 import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
-import 'nprogress/nprogress.css'; //styles of nprogress
+import 'nprogress/nprogress.css';
+import {Head} from "next/document"; //styles of nprogress
 
 NProgress.configure({
   minimum: 0.3,
