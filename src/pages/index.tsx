@@ -6,7 +6,6 @@ import { MdCheck } from "react-icons/md";
 import Navbar from "../components/Navbar";
 
 export default function Home() {
-  console.log(process.env.TEST_VAR)
   return (
     <>
       <Head>
@@ -51,3 +50,5 @@ export default function Home() {
     </>
   );
 }
+
+
