@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
 };
 
-console.log(process.env.TEST);
+console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
 
 try {
   firebase.initializeApp(firebaseConfig);
