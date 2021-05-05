@@ -2,6 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/login": "pages/login.js"
+  "/admin/projects/write": "pages/admin/projects/write.js",
+  "/login": "pages/login.js",
+  "/projects": "pages/projects.js",
+  "/blog": "pages/blog.js",
+  "/admin": "pages/admin.js",
+  "/": "pages/index.js"
 }

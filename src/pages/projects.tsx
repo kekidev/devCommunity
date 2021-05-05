@@ -7,12 +7,18 @@ import Navbar from "../components/Navbar";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FaGithub, FaStar } from "react-icons/fa";
+import { getAllProjects, getProjects } from "../utils/db";
+import { NextPageContext } from "next";
 // TODO: obj -> fb
-function blog() {
+function blog(props) {
   const { colorMode } = useColorMode();
   const bgColor = { light: "gray.200", dark: "gray.700" };
   const textColor = { light: "gray.500", dark: "gray.100" };
   const router = useRouter();
+  const project = JSON.parse(props.project);
+
+  // console.log(project[0].id);
+
   function PostGen(data) {
     return (
       <Box
@@ -74,54 +80,6 @@ function blog() {
     description: string;
   }
 
-  const QuizApp: Post = {
-    title: "퀴즈 앱",
-    thumbnail:
-      "https://i.ibb.co/HCD5B5Y/Screen-Shot-2021-05-04-at-2-43-19-PM.png",
-    github: "https://github.com/wevbute/Quiz-next-app",
-    web: "https://quiz-next-app-wevbute.vercel.app/",
-    developer: "keki",
-    description: "호스팅하다가 고장나서 작동 안됩니다",
-  };
-
-  const Deeplearning: Post = {
-    title: "내 딥러닝 공부 리포",
-    thumbnail:
-      "https://i.ibb.co/CwFbhYM/Screen-Shot-2021-05-04-at-3-12-12-PM.png",
-    github: "https://github.com/wevbute/DeepLearning",
-    developer: "keki",
-    description: "으악",
-  };
-
-  const ReactVision: Post = {
-    title: "웹 사물인식 AI",
-    thumbnail:
-      "https://i.ibb.co/MsGcJ7r/Screen-Shot-2021-05-04-at-3-23-44-PM.png",
-    github: "https://github.com/wevbute/react-computerVision",
-    web: "https://wevbute.github.io/react-computerVision/",
-    developer: "keki",
-    description: "웹 사물인식 AI",
-  };
-
-  const BOJ: Post = {
-    title: "백준 온라인 저지",
-    thumbnail:
-      "https://i.ibb.co/MhchzjZ/Screen-Shot-2021-05-04-at-3-30-42-PM.png",
-    github: "https://github.com/wevbute/BOJ",
-    developer: "keki",
-    description: "백준 온라인 저지 소스",
-  };
-
-  const MovieApp: Post = {
-    title: "영화 앱",
-    web: "https://wevbute.github.io/movie-app/",
-    thumbnail:
-      "https://i.ibb.co/kJ2SnfG/Screen-Shot-2021-05-04-at-3-34-50-PM.png",
-    github: "https://github.com/wevbute/movie-app",
-    description: "내가 만든건지 코드 가져온건지 기억이 안남",
-    developer: "keki",
-  };
-
   return (
     <>
       <Head>
@@ -132,16 +90,31 @@ function blog() {
         <Navbar />
       </Flex>
       <Container maxW="6xl">
-        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
-          {PostGen(QuizApp)}
-          {PostGen(Deeplearning)}
-          {PostGen(ReactVision)}
-          {PostGen(BOJ)}
-          {PostGen(MovieApp)}
-        </Grid>
+        {project.length > 0 && (
+          <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+            {project.map((singePost) => (
+              <Box key={singePost.id} textAlign="start" m={2}>
+                {PostGen(singePost)}
+              </Box>
+            ))}
+          </Grid>
+        )}
       </Container>
     </>
   );
 }
 
+export async function getServerSideProps(context: NextPageContext) {
+  const post = await getAllProjects();
+  const data = post.map((singleProject: any) => {
+    return {
+      ...singleProject,
+    };
+  });
+  return {
+    props: {
+      project: JSON.stringify(data),
+    },
+  };
+}
 export default blog;
