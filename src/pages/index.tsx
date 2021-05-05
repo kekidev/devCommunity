@@ -40,15 +40,9 @@ export default function Home() {
               <ListIcon color="green.500" />
               Responsive design
             </ListItem>
-            <ListItem>
-              <ListIcon color="green.500" />
-              Data loading
-            </ListItem>
           </List>
         </VStack>
       </Center>
     </>
   );
 }
-
-
