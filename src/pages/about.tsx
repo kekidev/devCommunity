@@ -15,7 +15,6 @@ export default function About() {
       <Navbar />
       <Center h="300px">
         <VStack spacing="15px" letterSpacing="2px">
-          <Heading size="2xl">안녕하세요</Heading>
           <Heading>베타버전입니다</Heading>
           <Flex>
             <Button
