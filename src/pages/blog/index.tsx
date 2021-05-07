@@ -20,8 +20,6 @@ import { useRouter } from "next/router";
 import { NextPageContext } from "next";
 import { getAllPosts } from "../../utils/db";
 
-
-
 function blog(props) {
   const { colorMode } = useColorMode();
   const bgColor = { light: "gray.200", dark: "gray.700" };
@@ -30,7 +28,6 @@ function blog(props) {
   const variant = { light: "outline", dark: null };
   const router = useRouter();
   const post = JSON.parse(props.post);
-  const e = uuidv4();
   function PostGen(data) {
     return (
       <Box
